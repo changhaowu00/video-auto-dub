@@ -1,7 +1,7 @@
 import whisper
 
 model = whisper.load_model("turbo")
-result = model.transcribe("C:\\Users\\chang\\Downloads\\output_audio.mp3")
+result = model.transcribe("C:\\Users\\chang\\Desktop\\GIT\\video-auto-dub\\videos\\venom1.mp4")
 print(result["text"])
 
 # model = whisper.load_model("turbo")
