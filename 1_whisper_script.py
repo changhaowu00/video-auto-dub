@@ -7,7 +7,7 @@ result = model.transcribe(
 )
 
 # Store the result in a text file
-with open("transcription_result.txt", "w", encoding="utf-8") as file:
+with open("output_file/transcription_result.txt", "w", encoding="utf-8") as file:
     file.write(result["text"])
 
 # model = whisper.load_model("turbo")
