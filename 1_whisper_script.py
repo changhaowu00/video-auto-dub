@@ -1,14 +1,19 @@
+import os
 import whisper
 
-model = whisper.load_model("turbo")
+from constants import INPUT_VIDEO_PATH, OUTPUT_TEXT_PATH
+
+
+
+
 # Transcribe and translate the video file (Chinese to Spanish)
-result = model.transcribe(
-    "/home/steven/Desktop/GIT/video-auto-dub/videos/venom1.mp4"
-)
+model = whisper.load_model("turbo")
+result = model.transcribe(INPUT_VIDEO_PATH)
 
 # Store the result in a text file
-with open("output_file/transcription_result.txt", "w", encoding="utf-8") as file:
+with open(OUTPUT_TEXT_PATH, "w", encoding="utf-8") as file:
     file.write(result["text"])
+
 
 # model = whisper.load_model("turbo")
 
