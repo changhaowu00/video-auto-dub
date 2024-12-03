@@ -1,7 +1,7 @@
 import os
 import whisper
 
-from constants import INPUT_VIDEO_PATH, OUTPUT_TEXT_PATH
+from utils import INPUT_VIDEO_PATH, OUTPUT_TEXT_PATH
 
 
 

@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from openai import OpenAI, api_key
-from constants import OUTPUT_TEXT_PATH
+from utils import OUTPUT_TEXT_PATH
 
 client = OpenAI()
 api_key = os.getenv("OPENAI_API_KEY")
