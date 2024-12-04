@@ -1,7 +1,6 @@
 # File config
 import os
 from pydub import AudioSegment
-from moviepy import VideoFileClip
 from pydub.silence import split_on_silence
 
 FILENAME = "venom1"
