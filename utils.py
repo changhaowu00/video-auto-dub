@@ -1,6 +1,7 @@
 # File config
 import os
 from pydub import AudioSegment
+from moviepy import VideoFileClip
 from pydub.silence import split_on_silence
 
 FILENAME = "venom1"
@@ -38,3 +39,4 @@ def remove_silence(input_file, output_file, silence_thresh=-40, min_silence_len=
     final_audio.export(output_file, format="wav")
 
     print(f"Audio without silence saved to {output_file}")
+
