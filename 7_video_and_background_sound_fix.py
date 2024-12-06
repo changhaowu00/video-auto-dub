@@ -1,5 +1,5 @@
 from moviepy import VideoFileClip, AudioFileClip
-from moviepy.editor import * 
+
 
 def replace_audio_in_video(video_file, audio_file, output_file):
     # Load the video clip
@@ -24,7 +24,7 @@ def combine_audio(vidname, audname, outname, fps=60):
 # Replace with your file paths
 video_file = '/home/steven/Desktop/GIT/video-auto-dub/videos/venom1.mp4'       # Your MP4 video fi
 audio_file = '/home/steven/Desktop/GIT/video-auto-dub/adjusted_sped_up_audio.mp3'  # Your MP3 file to replace the audio
-output_file = 'ssss.mp4'     # The name of the output file
+output_file = 's2s.mp4'     # The name of the output file
 
 replace_audio_in_video(video_file, audio_file, output_file)
 
