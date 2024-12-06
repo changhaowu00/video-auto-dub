@@ -49,7 +49,7 @@ def add_subtitles_to_video(video_file, srt_file, output_video):
             subtitle_clip = TextClip(
                     text=text,  # Text content
                     font="/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Use a valid system font
-                    font_size=24,  # Font size (note: fontsize, not font_size)
+                    font_size=50,  # Font size (note: fontsize, not font_size)
                     color="white",  # Text color
                     bg_color="black",  # Background color for better readability
                     size=(video.w, None),  # Match video width
@@ -60,12 +60,12 @@ def add_subtitles_to_video(video_file, srt_file, output_video):
             subtitle_clip.with_position(("center", "bottom"))
             subtitle_clip.start = start_time
             subtitle_clip.end = end_time
-            subtitle_clip.pos = ("center", "bottom")
 
 
     
             subtitles.append(subtitle_clip)
         
+        print(subtitles)
         # Overlay subtitles on the video
         final_video = CompositeVideoClip([video, *subtitles])
         final_video.write_videofile(output_video, codec="libx264", audio_codec="aac")
