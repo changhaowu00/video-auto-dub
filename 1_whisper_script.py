@@ -1,10 +1,6 @@
 import os
 import whisper
-
-from utils import INPUT_VIDEO_PATH, OUTPUT_TEXT_PATH
-
-
-
+from utils import *
 
 # Transcribe and translate the video file (Chinese to Spanish)
 model = whisper.load_model("turbo")
@@ -14,7 +10,7 @@ result = model.transcribe(INPUT_VIDEO_PATH)
 with open(OUTPUT_TEXT_PATH, "w", encoding="utf-8") as file:
     file.write(result["text"])
 
-
+generate_subtitles(INPUT_VIDEO_PATH, OUTPUT_TEXT_PATH)
 # model = whisper.load_model("turbo")
 
 # # load audio and pad/trim it to fit 30 seconds
