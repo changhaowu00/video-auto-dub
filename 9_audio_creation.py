@@ -9,7 +9,7 @@ text = [
     "Él tiene tres bocas para comer.",
     "Los buenos no comen.",
     "Los conocidos no comen.",
-    "Los transeúntes no comen.",
+    "Los transeúntes no comen. ",
     "En resumen,",
     "es un villano.",
     "Al mirarlo de esta manera, las hojas venenosas también causan un mal,¿verdad?"
