@@ -1,4 +1,4 @@
-import openai
+from openai import *
 
 
 def chat(prompt):

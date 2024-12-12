@@ -3,7 +3,7 @@ import os
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import whisper
-from moviepy import VideoFileClip, TextClip, CompositeVideoClip
+from moviepy import * 
 
 FILENAME = "venom1"
 INPUT_VIDEO_PATH = os.getcwd() + "/videos/" + FILENAME + ".mp4"
