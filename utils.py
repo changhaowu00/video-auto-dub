@@ -77,9 +77,8 @@ def remove_silence(input_file, output_file, silence_thresh=-40, min_silence_len=
     print(f"Audio without silence saved to {output_file}")
 
 # Function to generate subtitles using Whisper
-def generate_subtitles(video_file, output_srt):
+def generate_subtitles(video_file, output_srt, model="turbo"):
     try:
-        model = whisper.load_model("base")  # Use the "base" Whisper model
         result = model.transcribe(video_file)
         
         # Save subtitles in SRT format
