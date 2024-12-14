@@ -4,51 +4,13 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import whisper
 from moviepy import * 
+from openai import OpenAI
+from utils import *
 
 FILENAME = "venom1"
 INPUT_VIDEO_PATH = os.getcwd() + "/videos/" + FILENAME + ".mp4"
 OUTPUT_TEXT_PATH = os.getcwd() + "/output_files/" + FILENAME + ".txt"
 
-import os
-from openai import OpenAI
-import os
-from pathlib import Path
-from openai import OpenAI, api_key
-from utils import OUTPUT_TEXT_PATH
-from utils import *
-
-
-def generate_subtitles(video_file, output_srt, model="turbo"):
-    """
-    Function that generates text from speech, with the following ouput format.
-        1
-        00:00:00,000 --> 00:00:01,840
-        outtext 
-
-        2
-        00:00:00,000 --> 00:00:01,840
-        outtext
-
-        ...
-    """
-    try:
-        model = whisper.load_model(model)  # Use the "base" Whisper model
-        result = model.transcribe(video_file)
-        
-        # Save subtitles in SRT format
-        with open(output_srt, "w") as f:
-            for i, segment in enumerate(result["segments"]):
-                start = segment["start"]
-                end = segment["end"]
-                text = segment["text"].strip()
-                
-                f.write(f"{i + 1}\n")
-                f.write(f"{format_time(start)} --> {format_time(end)}\n")
-                f.write(f"{text}\n\n")
-                
-        print(f"Subtitles saved to {output_srt}")
-    except Exception as e:
-        print(f"An error occurred while generating subtitles: {e}")
 
 def chat(prompt):
     """
@@ -81,7 +43,6 @@ def text_to_speech(input_text_path, output_audio_path):
         input=text
     )
     response.stream_to_file(input_text_path, output_audio_path)
-
 
 def speed_up_audio(input_file, output_file, speed_factor=1.5):
     # Load the audio file
@@ -191,4 +152,3 @@ def parse_srt_time(srt_time):
     h, m, s = srt_time.split(":")
     s, ms = s.split(",")
     return int(h) * 3600 + int(m) * 60 + int(s) + int(ms) / 1000
-
