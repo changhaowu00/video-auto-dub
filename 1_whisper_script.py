@@ -3,7 +3,7 @@ import whisper
 from utils import *
 import re
 
-# Transcribe and translate the video file (Chinese to Spanish)
+# 1 ------------------- Subtitles generation with whisper TTS ----------------------
 model = whisper.load_model("turbo")
 input_audio = os.getcwd() + "/videos/" + "venom1.mp4"
 ouput_subtitles = os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
@@ -11,7 +11,7 @@ ouput_subtitles = os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
 
 
 
-#------------------- Extract captions into raw_tts_ch_subtitles.txt ------------------------
+# 2 ------------------- Extract subtitles into raw_tts_ch_subtitles.txt ------------------------
 # Input and output file paths
 input_file = ouput_subtitles
 output_file = os.getcwd() + "/output_files/" + "raw_tts_ch_subtitles.txt"
@@ -37,9 +37,9 @@ def extract_captions(input_file, ouput_file):
     print(f"Captions extracted and saved to {output_file}")
 # extract_captions(input_file, output_file)
 
-#--------------------- Translate raw_tts_ch_subtitles.txt into raw_tts_es_subtitles.txt ----------------------
+# 4 ------------------- Translate raw_tts_ch_subtitles.txt into raw_tts_es_subtitles.txt ----------------------
 
-#--------------------- Replace raw_tts_es_subtitles.txt line into captions format in tts_es_subtitles.txt----------------------
+# 5 ------------------- Replace raw_tts_es_subtitles.txt line into captions format in tts_es_subtitles.txt----------------------
 in1 =os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
 in2 =os.getcwd() + "/output_files/" + "raw_tts_es_subtitles.txt"
 out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.txt"
@@ -78,4 +78,6 @@ def replace_lines(first_file, second_file, out_file):
 
     print("Replacement completed. Check 'output.txt' for the result.")
 # replace_lines(in2,in1,out3)
+
+# 6 ------------------- Generate audio -------------------------
 
