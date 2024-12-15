@@ -8,6 +8,7 @@ from utils import add_subtitles_to_video, generate_subtitles
 video_file = os.getcwd() + "/videos/" + "venom1.mp4"
 output_srt = os.getcwd() + "/output_files/" + "tts_es_subtitles.srt"
 output_video = os.getcwd() + "/videos/" + "venom1_added_subtitles.mp4"
+font = os.getcwd() + "/font/Roboto-BoldItalic.ttf"
 
 # Generate subtitles and add them to the video
 def parse_srt_time(srt_time):
@@ -15,7 +16,7 @@ def parse_srt_time(srt_time):
     s, ms = s.split(",")
     return int(h) * 3600 + int(m) * 60 + int(s) + int(ms) / 1000
 
-def add_subtitles_to_video(video_file, srt_file, output_video):
+def add_subtitles_to_video(video_file, srt_file, output_video, font):
     try:
         video = VideoFileClip(video_file)
         
@@ -32,7 +33,7 @@ def add_subtitles_to_video(video_file, srt_file, output_video):
             # Create a subtitle text clip
             subtitle_clip = TextClip(
                     text = text,  # Text content
-                    font = "Arial-Bold",  # Use a valid system font
+                    font = font,  # Use a valid system font
                     font_size = 50,  # Font size (note: fontsize, not font_size)
                     color = "white",  # Text color
                     bg_color = "black",  # Background color for better readability
@@ -54,4 +55,4 @@ def add_subtitles_to_video(video_file, srt_file, output_video):
     except Exception as e:
         print(f"An error occurred while adding subtitles: {e}")
 
-add_subtitles_to_video(video_file, output_srt, output_video)
+add_subtitles_to_video(video_file, output_srt, output_video, font)
