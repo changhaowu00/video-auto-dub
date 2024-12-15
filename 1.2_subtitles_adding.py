@@ -16,6 +16,41 @@ def parse_srt_time(srt_time):
     s, ms = s.split(",")
     return int(h) * 3600 + int(m) * 60 + int(s) + int(ms) / 1000
 
+# Function to split subtitles into smaller chunks if they are too long and center-align them
+def split_long_subtitles(text, max_length=40):
+    words = text.split(" ")
+    lines = []
+    current_line = ""
+    
+    # Split the text into lines based on the max_length
+    for word in words:
+        if len(current_line + " " + word) <= max_length:
+            current_line += " " + word if current_line else word
+        else:
+            lines.append(current_line)
+            current_line = word
+    
+    if current_line:
+        lines.append(current_line)
+    
+    # Find the longest line length
+    max_line_length = max(len(line) for line in lines)
+    
+    # Center-align all lines by padding with spaces on both sides
+    centered_lines = []
+    for line in lines:
+        # Calculate spaces to pad on the left and right
+        padding = (max_line_length - len(line)) // 2
+        centered_line = " " * padding + line + " " * padding
+        
+        # In case the padding doesn't divide evenly, add an extra space to the right
+        if len(centered_line) < max_line_length:
+            centered_line += " "
+        
+        centered_lines.append(centered_line)
+    
+    return "\n".join(centered_lines)
+
 def add_subtitles_to_video(video_file, srt_file, output_video, font):
     try:
         video = VideoFileClip(video_file)
@@ -30,9 +65,12 @@ def add_subtitles_to_video(video_file, srt_file, output_video, font):
             end_time = parse_srt_time(lines[i + 1].split(" --> ")[1].strip())
             text = lines[i + 2].strip()
             
+            # Split long subtitles into multiple lines
+            split_text = split_long_subtitles(text, max_length=40)  # Adjust max_length if necessary
+           
             # Create a subtitle text clip
             subtitle_clip = TextClip(
-                    text = text,  # Text content
+                    text = split_text,  # Text content
                     font = font,  # Use a valid system font
                     font_size = 50,  # Font size (note: fontsize, not font_size)
                     color = "white",  # Text color
