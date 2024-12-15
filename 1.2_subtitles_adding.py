@@ -6,7 +6,7 @@ from utils import add_subtitles_to_video, generate_subtitles
 
 # Main script
 video_file = os.getcwd() + "/videos/" + "venom1.mp4"
-output_srt = os.getcwd() + "/output_files/" + "tts_es_subtitles.txt"
+output_srt = os.getcwd() + "/output_files/" + "tts_es_subtitles.srt"
 output_video = os.getcwd() + "/videos/" + "venom1_added_subtitles.mp4"
 
 # Generate subtitles and add them to the video
@@ -31,22 +31,19 @@ def add_subtitles_to_video(video_file, srt_file, output_video):
             
             # Create a subtitle text clip
             subtitle_clip = TextClip(
-                    text=text,  # Text content
-                    font="/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Use a valid system font
-                    font_size=50,  # Font size (note: fontsize, not font_size)
-                    color="white",  # Text color
-                    bg_color="black",  # Background color for better readability
+                    text = text,  # Text content
+                    font = "Arial-Bold",  # Use a valid system font
+                    font_size = 50,  # Font size (note: fontsize, not font_size)
+                    color = "white",  # Text color
+                    bg_color = "black",  # Background color for better readability
                     size=(video.w, None),  # Match video width
                     duration = end_time - start_time
-                )
+            )
             subtitle_clip.with_start(start_time)
             subtitle_clip.with_end(end_time)
             subtitle_clip.with_position(("center", "bottom"))
             subtitle_clip.start = start_time
             subtitle_clip.end = end_time
-
-
-    
             subtitles.append(subtitle_clip)
         
         print(subtitles)
