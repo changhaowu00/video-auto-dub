@@ -96,7 +96,7 @@ def generate_subtitles(video_file, output_srt, model="turbo"):
     except Exception as e:
         print(f"An error occurred while generating subtitles: {e}")
 
-# Helper function to format time in SRT format
+# Helper function to format time in SRT forma
 def format_time(seconds):
     millis = int((seconds % 1) * 1000)
     seconds = int(seconds)
