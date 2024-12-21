@@ -7,15 +7,9 @@ import re
 model = whisper.load_model("turbo")
 input_audio = os.getcwd() + "/videos/" + "venom1.mp4"
 ouput_subtitles = os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
-# generate_subtitles(input_audio, ouput_subtitles, model)
-
-
+generate_subtitles(input_audio, ouput_subtitles, model)
 
 # 2 ------------------- Extract subtitles into raw_tts_ch_subtitles.txt ------------------------
-# Input and output file paths
-input_file = ouput_subtitles
-output_file = os.getcwd() + "/output_files/" + "raw_tts_ch_subtitles.txt"
-
 def extract_captions(input_file, ouput_file):
     # Read the input file
     with open(input_file, "r", encoding="utf-8") as file:
@@ -35,15 +29,14 @@ def extract_captions(input_file, ouput_file):
         file.write("\n".join(captions))
 
     print(f"Captions extracted and saved to {output_file}")
-# extract_captions(input_file, output_file)
+
+input_file = ouput_subtitles
+output_file = os.getcwd() + "/output_files/" + "raw_tts_ch_subtitles.txt"
+extract_captions(input_file, output_file)
 
 # 4 ------------------- Translate raw_tts_ch_subtitles.txt into raw_tts_es_subtitles.txt ----------------------
 
 # 5 ------------------- Replace raw_tts_es_subtitles.txt line into captions format in tts_es_subtitles.txt----------------------
-in1 =os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
-in2 =os.getcwd() + "/output_files/" + "raw_tts_es_subtitles.txt"
-out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.txt"
-
 def replace_lines(first_file, second_file, out_file):
     # Read the content of the first text file
     with open(first_file, 'r') as file:
@@ -77,7 +70,11 @@ def replace_lines(first_file, second_file, out_file):
         file.writelines(modified_subtitles)
 
     print("Replacement completed. Check 'output.txt' for the result.")
-# replace_lines(in2,in1,out3)
+
+in1 =os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
+in2 =os.getcwd() + "/output_files/" + "raw_tts_es_subtitles.txt"
+out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.txt"
+replace_lines(in2,in1,out3)
 
 # 6 ------------------- Generate audio -------------------------
 
