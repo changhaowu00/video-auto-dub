@@ -6,7 +6,7 @@ import re
 # 1 ------------------- Subtitles generation with whisper TTS ----------------------
 model = whisper.load_model("turbo")
 input_audio = os.getcwd() + "/videos/" + "venom1.mp4"
-ouput_subtitles = os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
+ouput_subtitles = os.getcwd() + "/output_files/" + "tts_ch_subtitles.srt"
 generate_subtitles(input_audio, ouput_subtitles, model)
 
 # 2 ------------------- Extract subtitles into raw_tts_ch_subtitles.txt ------------------------
@@ -71,10 +71,9 @@ def replace_lines(first_file, second_file, out_file):
 
     print("Replacement completed. Check 'output.txt' for the result.")
 
-in1 =os.getcwd() + "/output_files/" + "tts_ch_subtitles.txt"
+in1 =os.getcwd() + "/output_files/" + "tts_ch_subtitles.srt"
 in2 =os.getcwd() + "/output_files/" + "raw_tts_es_subtitles.txt"
-out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.txt"
+out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.srt"
 replace_lines(in2,in1,out3)
 
-# 6 ------------------- Generate audio -------------------------
 
