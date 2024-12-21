@@ -79,6 +79,6 @@ def generate_audio_from_subtitles(subtitle_file, out_file):
     print("Audio file generated successfully in "+ out_file)
 
 # Example usage
-out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.txt"
+out3 = os.getcwd() + "/output_files/" + "tts_es_subtitles.srt"
 out_file = os.getcwd() + "/audios/" + "subtitles_audio.wav"
 generate_audio_from_subtitles(out3, out_file)
